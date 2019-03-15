@@ -179,9 +179,10 @@ class _LoginPageState extends State<LoginPage>
                 child: Text(
                   "Existing",
                   style: TextStyle(
-                      color: left,
-                      fontSize: 16.0,
-                      fontFamily: "WorkSansSemiBold"),
+                    color: left,
+                    fontSize: 16.0,
+                    fontFamily: "WorkSansSemiBold",
+                  ),
                 ),
               ),
             ),
@@ -673,6 +674,7 @@ class _LoginPageState extends State<LoginPage>
   }
 
   void _signIn() {
+    Navigator.of(context).pop();
     // String email = loginEmailController.text;
     // String pass = loginPasswordController.text;
     // // FOR TESTING ONLY REMOVE LATER TODO
