@@ -55,7 +55,9 @@ class _OrderSelectionPageState extends State<OrderSelectionPage> {
                   title: Text("Maggi"),
                 ),
               ),
-              Container(height: 50.0,),
+              Container(
+                height: 50.0,
+              ),
               Container(
                 height: 100.0,
                 child: WaveWidget(

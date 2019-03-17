@@ -4,3 +4,4 @@
 - Anish Aggarwal
 - Hritwik Bhardwaj
 - Nishit Attrey
+- Shubham Mittal
