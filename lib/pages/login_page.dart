@@ -677,7 +677,7 @@ class _LoginPageState extends State<LoginPage>
     Navigator.of(context).pop();
     // String email = loginEmailController.text;
     // String pass = loginPasswordController.text;
-    // // FOR TESTING ONLY REMOVE LATER TODO
+    // TODO IMPLEMENT LOGIN
     // if (email == "" && pass == "") {
     //   email = "k@g.com";
     //   pass = "123123";

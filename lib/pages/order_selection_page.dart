@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/heading.dart';
-import 'package:wave/wave.dart';
-import 'package:wave/config.dart';
+import '../widgets/custom_wave.dart';
+import '../widgets/product_card.dart';
 
 class OrderSelectionPage extends StatefulWidget {
   @override
@@ -9,8 +9,25 @@ class OrderSelectionPage extends StatefulWidget {
 }
 
 class _OrderSelectionPageState extends State<OrderSelectionPage> {
+  bool loaded = false;
+  Map<String, List<Map<String, dynamic>>> productData = {
+    "drinks": [
+      {"name": "Coca-Cola", "price": 20, "stock": 10},
+      {"name": "Maaza", "price": 25, "stock": 2},
+      {"name": "Ice Tea", "price": 20, "stock": 10},
+    ],
+    "snacks": [
+      {"name": "Burger", "price": 25, "stock": 4},
+      {"name": "Cheese Burger", "price": 35, "stock": 3},
+      {"name": "Lays", "price": 20, "stock": 10},
+    ]
+  };
+
   @override
   Widget build(BuildContext context) {
+    var productList = _buildProducts();
+    productList.add(CustomWave());
+
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -18,73 +35,29 @@ class _OrderSelectionPageState extends State<OrderSelectionPage> {
             pinned: true,
             expandedHeight: 250.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text('Demo'),
+              title: Text('NESCAFE'),
             ),
           ),
           SliverList(
-            delegate: SliverChildListDelegate([
-              Heading1("Drinks"),
-              Card(
-                child: ListTile(
-                  title: Text("Coca-Cola"),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  title: Text("Pepsi"),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  title: Text("Ice Tea"),
-                ),
-              ),
-              Heading1("Snacks"),
-              Card(
-                child: ListTile(
-                  title: Text("Burger"),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  title: Text("Sandwich"),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  title: Text("Maggi"),
-                ),
-              ),
-              Container(
-                height: 50.0,
-              ),
-              Container(
-                height: 100.0,
-                child: WaveWidget(
-                  config: CustomConfig(
-                    gradients: [
-                      [Colors.blue, Colors.blue],
-                      [Colors.blue[800], Colors.blue[800]],
-                      [Colors.blueAccent, Colors.blueAccent],
-                      [Colors.blue[200], Colors.blue[200]],
-                    ],
-                    durations: [35000, 19440, 10800, 6000],
-                    heightPercentages: [0.20, 0.23, 0.25, 0.30],
-                    blur: MaskFilter.blur(BlurStyle.outer, 10),
-                    gradientBegin: Alignment.bottomLeft,
-                    gradientEnd: Alignment.topRight,
-                  ),
-                  size: Size(
-                    double.infinity,
-                    100.0,
-                  ),
-                ),
-              ),
-            ]),
+            delegate: SliverChildListDelegate(productList),
           ),
           // SliverFillRemaining(),
         ],
       ),
     );
+  }
+
+  List<Widget> _buildProducts() {
+    List<Widget> widgets = [];
+
+    for (String prType in productData.keys) {
+      widgets.add(Heading1(prType.toUpperCase()));
+      List<Widget> products = [];
+      products.addAll(productData[prType]
+          .map((product) => ProductCard(product)));
+      widgets.addAll(products);
+    }
+
+    return widgets;
   }
 }

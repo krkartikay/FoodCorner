@@ -3,11 +3,13 @@ from flask import *
 app = Flask(__name__)
 app.secret_key = "dummy secret key"
 
+
 @app.route("/api/products/<string:vendor>")
 def products(vendor):
     if vendor == "NESCAFE":
         return jsonify(
-            {"data": [
+            {
+                "data":
                 {
                     "drinks": [
                         {"name": "Coca-Cola", "price": 20, "stock": 10},
@@ -20,7 +22,7 @@ def products(vendor):
                         {"name": "Lays", "price": 20, "stock": 10},
                     ]
                 }
-            ]}
+            }
         )
     else:
         return jsonify({"errors": "NO_SUCH_VENDOR"})
