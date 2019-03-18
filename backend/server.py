@@ -28,4 +28,4 @@ def products(vendor):
         return jsonify({"errors": "NO_SUCH_VENDOR"})
 
 
-app.run(debug=True)
+app.run(debug=True, host="0.0.0.0")

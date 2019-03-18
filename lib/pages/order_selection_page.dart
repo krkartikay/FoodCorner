@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:requests/requests.dart';
 import '../widgets/heading.dart';
 import '../widgets/custom_wave.dart';
 import '../widgets/product_card.dart';
+import '../models/product_data.dart';
 
 class OrderSelectionPage extends StatefulWidget {
+  final String backend = "http://192.168.225.242:5000";
+  final String vendor = "NESCAFE";
   @override
   _OrderSelectionPageState createState() => _OrderSelectionPageState();
 }
 
 class _OrderSelectionPageState extends State<OrderSelectionPage> {
   bool loaded = false;
-  Map<String, List<Map<String, dynamic>>> productData = {
-    "drinks": [
-      {"name": "Coca-Cola", "price": 20, "stock": 10},
-      {"name": "Maaza", "price": 25, "stock": 2},
-      {"name": "Ice Tea", "price": 20, "stock": 10},
-    ],
-    "snacks": [
-      {"name": "Burger", "price": 25, "stock": 4},
-      {"name": "Cheese Burger", "price": 35, "stock": 3},
-      {"name": "Lays", "price": 20, "stock": 10},
-    ]
-  };
+  ProductData productData;
+
+  @override
+  void initState() {
+    _loadProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var productList = _buildProducts();
-    productList.add(CustomWave());
-
+    List<Widget> productList = [];
+    if (loaded) {
+      productList = _buildProducts();
+      productList.add(CustomWave());
+    } else {
+      productList = [Container(height: 500.0, child: Center(child: CircularProgressIndicator()))];
+    }
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -47,14 +50,26 @@ class _OrderSelectionPageState extends State<OrderSelectionPage> {
     );
   }
 
+  void _loadProducts() {
+    Requests.get(widget.backend + "/api/products/" + widget.vendor)
+    .then((response) {
+      productData = ProductData(response);
+      setState(() { loaded = true; });
+    }).catchError((error) {
+      print("Error fetching products: $error");
+    });
+  }
+
   List<Widget> _buildProducts() {
     List<Widget> widgets = [];
 
-    for (String prType in productData.keys) {
+    for (String prType in productData.data.keys) {
       widgets.add(Heading1(prType.toUpperCase()));
       List<Widget> products = [];
-      products.addAll(productData[prType]
-          .map((product) => ProductCard(product)));
+      List w = productData.data[prType].map((product) => ProductCard(product)).toList();
+      for (var item in w) {
+        products.add(item);
+      }
       widgets.addAll(products);
     }
 
