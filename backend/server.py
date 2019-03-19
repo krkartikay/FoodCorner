@@ -12,14 +12,14 @@ def products(vendor):
                 "data":
                 {
                     "drinks": [
-                        {"name": "Coca-Cola", "price": 20, "stock": 10},
-                        {"name": "Maaza", "price": 25, "stock": 2},
-                        {"name": "Ice Tea", "price": 20, "stock": 10},
+                        {"name": "Coca-Cola", "price": 20, "stock": 10,"pid": 1},
+                        {"name": "Maaza", "price": 25, "stock": 2,"pid": 2},
+                        {"name": "Ice Tea", "price": 20, "stock": 10,"pid": 3},
                     ],
                     "snacks": [
-                        {"name": "Burger", "price": 25, "stock": 4},
-                        {"name": "Cheese Burger", "price": 35, "stock": 3},
-                        {"name": "Lays", "price": 20, "stock": 10},
+                        {"name": "Burger", "price": 25, "stock": 4, "pid": 4},
+                        {"name": "Cheese Burger", "price": 35, "stock": 3, "pid": 5},
+                        {"name": "Lays", "price": 20, "stock": 10, "pid": 6},
                     ]
                 }
             }
