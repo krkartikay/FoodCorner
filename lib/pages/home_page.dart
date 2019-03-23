@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/vendor_card.dart';
+import '../widgets/custom_wave.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -33,7 +34,8 @@ class HomePage extends StatelessWidget {
             subtitle: "Get some real healthy\nfood here!",
             photo: "assets/img/4h.png",
             open: true,
-          )
+          ),
+          CustomWave(),
         ],
       ),
     );
