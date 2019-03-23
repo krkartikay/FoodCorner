@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Card(
+                  elevation: 3.0,
                   child: ListTile(
                     title: Text("Remaining Balance: "),
                     trailing: Heading1("\$$bal"),
