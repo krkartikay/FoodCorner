@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'FoodCorner',
         initialRoute: '/login',
         routes: {
-          '/': (context) => OrderSelectionPage(),
+          '/': (context) => HomePage(),
           '/login' : (context) => LoginPage(),
         },
       ),
