@@ -72,14 +72,40 @@ class _OrderSelectionPageState extends State<OrderSelectionPage> {
             Heading0nb("\$${totalOrderPrice()}"),
             Row(
               children: <Widget>[
-                Expanded(child: Container(),),
-                FlatButton(child: Text("Cancel", style: TextStyle(color: Colors.red),), onPressed: (){},),
-                SizedBox(width: 10.0,),
-                RaisedButton(child: Text("Confirm", style: TextStyle(color: Colors.white),), onPressed: (){}, color: Colors.blue, elevation: 3.0,),
-                SizedBox(width: 10.0,),
+                Expanded(
+                  child: Container(),
+                ),
+                FlatButton(
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                RaisedButton(
+                  child: Text(
+                    "Confirm",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacementNamed("/ordersent");
+                  },
+                  color: Colors.blue,
+                  elevation: 3.0,
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
               ],
             ),
-            SizedBox(height: 10.0,)
+            SizedBox(
+              height: 10.0,
+            )
           ],
         ),
       ),
