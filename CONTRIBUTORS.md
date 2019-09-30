@@ -5,3 +5,4 @@
 - Hritwik Bhardwaj
 - Nishit Attrey
 - Shubham Mittal
+- Prateek Sharma
